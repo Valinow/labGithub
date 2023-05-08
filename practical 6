@@ -1,0 +1,75 @@
+using System;
+
+using System.IO;
+
+class Program
+
+{
+
+static bool IsPrime(int number)
+
+{
+
+if (number <= 1)
+
+{
+
+return false;
+
+}
+
+for (int i = 2; i <= Math.Sqrt(number); i++)
+
+{
+
+if (number % i == 0)
+
+{
+
+return false;
+
+}
+
+}
+
+return true;
+
+}
+
+static void Main()
+
+{
+
+string inputFilePath = "output.txt";
+
+string outputFilePath = "primes.txt";
+
+using (StreamReader reader = new StreamReader(inputFilePath)) //щоб спрацював цей код, потрібен файл типу outpud, який знаходиться у папці, куди веде посилання на пошук цього файлу.
+
+using (StreamWriter writer = new StreamWriter(outputFilePath))
+
+{
+
+string line;
+
+while ((line = reader.ReadLine()) != null)
+
+{
+
+int number;
+
+if (int.TryParse(line, out number) && IsPrime(number))
+
+{
+
+writer.WriteLine(number);
+
+}
+
+}
+
+}
+
+}
+
+}
